@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.numberone.system.mapper.OfficialDocumentMapper">
+    
+    <resultMap type="OfficialDocument" id="OfficialDocumentResult">
+        <result property="id"    column="id"    />
+        <result property="code"    column="code"    />
+        <result property="title"    column="title"    />
+        <result property="level"    column="level"    />
+        <result property="secretLevel"    column="secret_level"    />
+        <result property="content"    column="content"    />
+        <result property="status"    column="status"    />
+        <result property="createBy"       column="create_by"       />
+        <result property="createTime"     column="create_time"     />
+        <result property="updateBy"       column="update_by"       />
+        <result property="updateTime"     column="update_time"     />
+        <result property="publishTime"    column="publish_time"    />
+    </resultMap>
+	
+	<sql id="selectOfficialDocumentVo">
+        select id, code, title, level, secret_level, content, status, create_by, create_time, update_by, update_time, publish_time from official_document
+    </sql>
+	
+    <select id="selectOfficialDocumentList" parameterType="OfficialDocument" resultMap="OfficialDocumentResult">
+        <include refid="selectOfficialDocumentVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="code != null  and code != '' "> and code = #{code}</if>
+             <if test="title != null  and title != '' "> and title = #{title}</if>
+             <if test="level != null  and level != ''"> and level = #{level}</if>
+             <if test="secretLevel != null and secretLevel != ''"> and secret_level = #{secretLevel}</if>
+             <if test="content != null  and content != '' "> and content = #{content}</if>
+             <if test="status != null   and status != ''"> and status = #{status}</if>
+             <if test="createBy != null "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+             <if test="publishTime != null "> and publish_time = #{publishTime}</if>
+         </where>
+         order by create_time desc
+    </select>
+    
+    <select id="selectOfficialDocumentById" parameterType="Integer" resultMap="OfficialDocumentResult">
+        <include refid="selectOfficialDocumentVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertOfficialDocument" parameterType="OfficialDocument" useGeneratedKeys="true" keyProperty="id">
+        insert into official_document
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="code != null  and code != ''  ">code,</if>
+			<if test="title != null  and title != ''  ">title,</if>
+			<if test="level != null  ">level,</if>
+			<if test="secretLevel != null  ">secret_level,</if>
+			<if test="content != null  and content != ''  ">content,</if>
+			<if test="status != null  ">status,</if>
+            <if test="createBy != null and createBy != ''">create_by,</if>
+			create_time
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="code != null  and code != ''  ">#{code},</if>
+			<if test="title != null  and title != ''  ">#{title},</if>
+			<if test="level != null  ">#{level},</if>
+			<if test="secretLevel != null  ">#{secretLevel},</if>
+			<if test="content != null  and content != ''  ">#{content},</if>
+			<if test="status != null  ">#{status},</if>
+			<if test="createBy != null  ">#{createBy},</if>
+            sysdate()
+         </trim>
+    </insert>
+	 
+    <update id="updateOfficialDocument" parameterType="OfficialDocument">
+        update official_document
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null  and code != ''  ">code = #{code},</if>
+            <if test="title != null  and title != ''  ">title = #{title},</if>
+            <if test="level != null  ">level = #{level},</if>
+            <if test="secretLevel != null  ">secret_level = #{secretLevel},</if>
+            <if test="content != null  and content != ''  ">content = #{content},</if>
+            <if test="status != null  ">status = #{status},</if>
+            <if test="updateBy != null  ">create_by = #{updateBy},</if>
+            update_time = sysdate(),
+            <if test="publishTime != null  ">publish_time = #{publishTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="issueDocumentByIds" parameterType="Integer">
+        update official_document
+        set status = '1',update_time = sysdate()
+        where id =#{id}
+    </update>
+
+	<delete id="deleteOfficialDocumentById" parameterType="Integer">
+        delete from official_document where id = #{id}
+    </delete>
+	
+    <delete id="deleteOfficialDocumentByIds" parameterType="String">
+        delete from official_document where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    
+</mapper>

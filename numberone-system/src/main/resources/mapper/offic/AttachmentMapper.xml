@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.numberone.system.mapper.AttachmentMapper">
+    
+    <resultMap type="Attachment" id="AttachmentResult">
+        <result property="id"    column="id"    />
+        <result property="docId"    column="doc_id"    />
+        <result property="url"    column="url"    />
+    </resultMap>
+	
+	<sql id="selectAttachmentVo">
+        select id, doc_id, url from attachment
+    </sql>
+	
+    <select id="selectAttachmentList" parameterType="Attachment" resultMap="AttachmentResult">
+        <include refid="selectAttachmentVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="docId != null "> and doc_id = #{docId}</if>
+             <if test="url != null  and url != '' "> and url = #{url}</if>
+         </where>
+    </select>
+    
+    <select id="selectAttachmentById" parameterType="Integer" resultMap="AttachmentResult">
+        <include refid="selectAttachmentVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAttachment" parameterType="Attachment" useGeneratedKeys="true" keyProperty="id">
+        insert into attachment
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="docId != null  ">doc_id,</if>
+			<if test="url != null  and url != ''  ">url,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="docId != null  ">#{docId},</if>
+			<if test="url != null  and url != ''  ">#{url},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateAttachment" parameterType="Attachment">
+        update attachment
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="docId != null  ">doc_id = #{docId},</if>
+            <if test="url != null  and url != ''  ">url = #{url},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="updateAttachmentByDocId" parameterType="Attachment">
+        update attachment
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="url != null  and url != ''  ">url = #{url},</if>
+        </trim>
+        where doc_id = #{docId}
+    </update>
+
+
+	<delete id="deleteAttachmentById" parameterType="Integer">
+        delete from attachment where id = #{id}
+    </delete>
+	
+    <delete id="deleteAttachmentByIds" parameterType="String">
+        delete from attachment where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,65 @@
+{
+  "id": "1487079",
+  "name": "能源局",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "319737",
+      "name": "文章",
+      "font_class": "wenzhang",
+      "unicode": "e7c4",
+      "unicode_decimal": 59332
+    },
+    {
+      "icon_id": "4274364",
+      "name": "帮助",
+      "font_class": "bangzhu",
+      "unicode": "e6ad",
+      "unicode_decimal": 59053
+    },
+    {
+      "icon_id": "4334935",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "8645982",
+      "name": "三角下标（正方形）",
+      "font_class": "triangle-down",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9577335",
+      "name": "三角下标（正方形）",
+      "font_class": "sanb",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "11331766",
+      "name": "三角下",
+      "font_class": "sanjiaoxia",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "11331767",
+      "name": "三角上",
+      "font_class": "sanjiaoshang",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "11331812",
+      "name": "用户名",
+      "font_class": "untitled",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    }
+  ]
+}

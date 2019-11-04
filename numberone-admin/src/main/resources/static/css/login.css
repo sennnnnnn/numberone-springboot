@@ -1,0 +1,26 @@
+body{background:#1067a1}
+.top {background:#eaeaea;height:35px;line-height:35px;font-size:.875rem}
+.top .wrapper,
+.header .wrapper{max-width:1600px;margin:0 auto}
+.header {height:200px;background: url("../images/login-bg.jpg") no-repeat;background-size: 100%;}
+.header .wrapper{padding-top:35px}
+.header .logo {;float:left}
+.header .logo img{width:190px}
+.header .text{float:left;}
+.header .text img{width:300px;}
+.title {background: url("../images/login-icon.png") no-repeat 0 2px;background-size:auto 90%;height:22px;color:#193b7a;padding-left:25px;font-weight:600;margin-bottom:25px}
+.content {width:950px;height:380px;padding:80px 70px;margin:0 auto;background: url("../images/login-box.jpg") repeat-x;border:solid 1px #5699b3;border-radius:8px}
+.content .form{width:50%;float:left;background: url("../images/login-border.png") no-repeat right 0; }
+.content .form-group{margin-bottom:15px;}
+.content .form-group label{width:100px;text-align: right;font-size:.875rem;display:inline-block}
+.content .form-group input[type=text],
+.content .form-group input[type=password]{width:260px;border:solid 1px #ccc;border-radius:3px;padding:3px 12px}
+.content .form-group input[type=submit]{margin:10px 0 0 0;width:110px;height:38px;background: #60b760;color:#fff;border-radius:5px;font-size:.875rem}
+.content .form-group .tips{color:#E60000;font-size:.75rem}
+.content .text{width:50%;float:left;padding-left:30px;}
+.content .text p{line-height:38px;font-size:.875rem;color:#000}
+.content .text span{color:#E60000}
+.footer {width:950px;margin:70px auto;}
+.footer .f-logo {float:left;margin:0 40px}
+.footer .f-logo img{width:70px}
+.footer .text{float:left;color:#fff;line-height:27px;font-size:.75rem}
